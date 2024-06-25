@@ -33,6 +33,25 @@ class NaveEspacial{
 	}
 	
 	method tienePocaActividad()
+	
+	}
+
+//Metodo de validacion
+class Baliza inherits NaveEspacial {
+	var color
+	method initialize(){
+		self.validarColores(color)
+	}
+	
+	method validarColores(unColor){
+		if (not ["rojo", "verde", "azul"].contains(unColor))
+		self.error("Color no valido")
+	}
+	
+	method cambiarColorDeBaliza(colorNuevo){
+		self.validarColores(colorNuevo)
+		color = colorNuevo
+		}
 }
 
 class NavesBaliza inherits NaveEspacial {
@@ -71,7 +90,7 @@ class NavesDePasajeros inherits NaveEspacial  {
 	method descargarRacionesDeBebidas(raciones) {0.max(racionesBebidas = racionesBebidas - raciones)}
 	method servirRacionesDeComida(raciones){
 		self.descargarRacionesDeComida(raciones)
-		racionesDeComidaServida = racionesDeComidaServida + raciones
+		racionesDeComidaServida = racionesDeComida.max(racionesDeComidaServida + raciones) 
 	}
 	
 	override method prepararViaje() {
